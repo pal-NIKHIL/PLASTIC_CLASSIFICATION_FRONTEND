@@ -1,4 +1,4 @@
-import { ButtonBase, Card, Typography } from "@mui/material";
+import { ButtonBase, Card, Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 const EducationCardSection = () => {
@@ -7,14 +7,22 @@ const EducationCardSection = () => {
       <Card
         sx={{
           padding: 4,
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
         }}
       >
-        <Typography>Be part of the solution to plastic pollution</Typography>
+        <Typography variant="h3">
+          {" "}
+          Be part of the solution to plastic pollution
+        </Typography>
         <ButtonBase
           to={"/campus-experience"}
           sx={{
             backgroundColor: "#161313",
             width: "fit-content",
+            marginBlock: 3,
             borderRadius: "20px",
             "&:hover": {
               boxShadow: "0px 5px 10px 0px rgba(0,0,0,0.2)",

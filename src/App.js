@@ -15,10 +15,16 @@ import {
   MenuItem,
   useMediaQuery,
   alpha,
+  Avatar,
+  Card,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState, lazy, Suspense } from "react";
-import { HiUserCircle } from "react-icons/hi2";
+import {
+  HiOutlineAcademicCap,
+  HiOutlineBars3,
+  HiUserCircle,
+} from "react-icons/hi2";
 import { useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
@@ -189,6 +195,7 @@ function App() {
       )}
     </Box>
   );
+
   return (
     <Box display={"flex"} bgcolor={"#fefefe"}>
       <CssBaseline />
@@ -208,7 +215,35 @@ function App() {
           backgroundColor: (theme) =>
             alpha(theme.palette.background.default, 0.8),
         }}
-      ></AppBar>
+      >
+        <Box
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          paddingRight={1}
+        >
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { md: "none" } }}
+          >
+            <HiOutlineBars3 />
+          </IconButton>
+          <Box sx={{ display: { xs: "none", md: "block" } }}></Box>
+
+          <Box>
+            <Stack direction={"row"} spacing={1} p={1}>
+              <Avatar />
+              <Stack spacing={0.1}>
+                <Typography variant="caption">Nikhil Pal</Typography>
+                <Typography variant="caption">po7508@srmist.edu.in</Typography>
+              </Stack>
+            </Stack>
+          </Box>
+        </Box>
+      </AppBar>
       <Box
         component="nav"
         sx={{
@@ -277,9 +312,11 @@ function App() {
       <Box
         sx={{
           flexGrow: 1,
-          p: 1,
-          mt: 10,
-          mx: 1,
+          backgroundColor: "#f0f8ff",
+          paddingBlock: 3,
+          paddingInline: 2,
+          mt: 7,
+          mx: 0.5,
           width: {
             md: `calc(100% - ${hoverdrawer ? drawerWidth : minidrawerWidth}px)`,
           },

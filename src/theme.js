@@ -114,7 +114,6 @@ const CustomTheme = () => {
               " 0 0 2px 0 rgba(145, 158, 171, 0.2), 0 12px 24px -4px rgba(145, 158, 171, 0.12)",
             transition: "box-shadow 800ms cubic-bezier(0.4, 0, 0.2, 1) 8ms",
             "&:hover": {
-              transform: "translateY(-4px)",
               boxShadow:
                 " 0 0 2px 0 rgba(145, 158, 171, 0.2), 0 12px 24px -4px rgba(145, 158, 171, 0.12)",
             },

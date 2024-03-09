@@ -1,7 +1,7 @@
 import { Avatar, Card, Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
-const TotalPlasticCard = () => {
+const TotalPlasticCard = ({ type, count, shortform, image }) => {
   return (
     <Grid2 xs={12} lg={3}>
       <Card
@@ -9,19 +9,19 @@ const TotalPlasticCard = () => {
           padding: 2,
         }}
       >
-        <Stack spacing={2}>
-          <Stack direction={"row"}>
-            <Avatar />
-            <Typography>Polypropelene</Typography>
+        <Stack spacing={1}>
+          <Stack direction={"row"} spacing={2}>
+            <Avatar variant="rounded" src={image} alt={shortform} />
+            <Stack spacing={0.5}>
+              <Typography variant="subtitle1">{type}</Typography>
+              <Typography variant="subtitle1">{shortform}</Typography>
+            </Stack>
           </Stack>
-          <Typography>941241+</Typography>
-          <Stack direction={"row"}>
-            <Typography>563+</Typography>
-            <Typography>525+</Typography>
-          </Stack>
+          <Typography>{count}+</Typography>
         </Stack>
       </Card>
     </Grid2>
   );
 };
+
 export default TotalPlasticCard;

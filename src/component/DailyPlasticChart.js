@@ -88,7 +88,6 @@ const DailyPlasticChart = () => {
                 },
               }}
               height={300}
-              width={300}
             />
           )}
         </Card>

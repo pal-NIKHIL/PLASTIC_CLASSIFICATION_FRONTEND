@@ -6,7 +6,10 @@ import {
   TableHead,
   TableRow,
   Card,
+  Box,
   Typography,
+  TableContainer,
+  Paper,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import axios from "axios";
@@ -27,8 +30,11 @@ const MonthlyPlasticTable = () => {
       });
   }, []);
   return (
-    <Grid2 xs={12} lg={7}>
-      <Card>
+    <Grid2 xs={12} sm={12} lg={7}>
+      <TableContainer
+        component={Paper}
+        sx={{ maxWidth: "90vw", overflow: "auto" }}
+      >
         <Table>
           <TableHead>
             <TableRow>
@@ -86,7 +92,7 @@ const MonthlyPlasticTable = () => {
             <Typography>Data is Fetching</Typography>
           )}
         </Table>
-      </Card>
+      </TableContainer>
     </Grid2>
   );
 };

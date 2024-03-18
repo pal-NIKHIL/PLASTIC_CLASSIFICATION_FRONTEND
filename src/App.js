@@ -198,9 +198,10 @@ function App() {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: "none" } }}
+            p={1}
+            sx={{ mr: 2, ml: 0.5, display: { md: "none" } }}
           >
-            <HiOutlineBars3 />
+            <HiOutlineBars3 m={1} />
           </IconButton>
           <Box sx={{ display: { xs: "none", md: "block" } }}></Box>
 

@@ -1,6 +1,6 @@
 import { ButtonBase, Card, Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-
+import educationImage from "../assest/edu.png";
 const EducationCardSection = () => {
   return (
     <Grid2 xs={12} lg={3}>
@@ -11,6 +11,9 @@ const EducationCardSection = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          backgroundImage: `url(${educationImage})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
         }}
       >
         <Typography variant="h3">

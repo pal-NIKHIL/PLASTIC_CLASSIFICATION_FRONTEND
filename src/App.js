@@ -18,7 +18,14 @@ import {
   Avatar,
   Card,
 } from "@mui/material";
+import dayjs from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateField } from "@mui/x-date-pickers/DateField";
 import { useLocation } from "react-router-dom";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 import { useEffect, useState, lazy, Suspense } from "react";
 import {
   HiOutlineAcademicCap,
@@ -35,6 +42,9 @@ import { useContext } from "react";
 import { UserContext } from "./store/usercontext";
 import { FaBuilding, FaBriefcase } from "react-icons/fa";
 import HomePage from "./scenes/homePage";
+import { DatePicker } from "@mui/x-date-pickers";
+import moment from "moment-timezone";
+import icon from "./assest/icon-01.svg";
 function App() {
   const isUserlogin = localStorage.getItem("token");
   const activepath = useLocation().pathname;
@@ -42,19 +52,34 @@ function App() {
   const [ismobilescreen, setmobilescreen] = useState(false);
   const drawerWidth = 240;
   const minidrawerWidth = 80;
-
-  const { handlelogin, state, handlelogout } = useContext(UserContext);
   const handleDrawerToggle = () => {
     sethoverdrawer(true);
     setmobilescreen(!ismobilescreen);
   };
-
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
   const [hoverdrawer, sethoverdrawer] = useState(false);
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
   const [openinterviewDialog, setopeninterviewDialog] = useState(false);
   const [openreviewDialog, setopenreviewDialog] = useState(false);
   const [openloginDialog, setopenloginDialog] = useState(false);
   const handleReviewDialog = () => setopenreviewDialog(!openreviewDialog);
+
+  const { state, dispatch } = useContext(UserContext);
+  const handleStartDateChange = (date) => {
+    dispatch({
+      type: "UPDATE_DATES",
+      payload: { startDate: date, endDate: state.endDate },
+    });
+  };
+
+  const handleEndDateChange = (date) => {
+    dispatch({
+      type: "UPDATE_DATES",
+      payload: { startDate: state.startDate, endDate: date },
+    });
+  };
+
   const drawerItem = [
     {
       title: "HomePage",
@@ -76,123 +101,69 @@ function App() {
     <Box
       display={"flex"}
       flexDirection={"column"}
-      color="white"
-      sx={{
-        justifyContent: "space-between",
-        alignItems: "center",
-        height: "100vh",
-        maxWidth: { drawerWidth },
-      }}
-      my={2}
+      alignItems="center"
+      width={"100%"}
     >
-      <Box
-        display={"flex"}
-        flexDirection={"column"}
-        alignItems="center"
-        width={"100%"}
-      >
-        {!hoverdrawer && <Toolbar />}
-        <Divider color="white" mt={2} />
-        <Stack spacing={4} mt={2} justifyContent={"center"} width={"100%"}>
-          {drawerItem.map((item) => {
-            return (
-              <ButtonBase
-                width="100%"
-                component={Link}
-                to={item.path}
-                onClick={() => {
-                  if (ismobilescreen) {
-                    setmobilescreen(false);
-                  }
-                }}
-                sx={{
-                  justifyContent: hoverdrawer ? "start" : "center",
-                  borderRadius: "0px",
-                  color: activepath === item.path ? `white` : "#656671",
-                  backgroundColor:
-                    activepath === item.path ? `#241f35` : "transparent",
-                  borderRight:
-                    activepath === item.path
-                      ? `5px solid #7e60e3`
-                      : "transparent",
-
-                  "&:hover": {
-                    borderRight: "5px solid #7e60e3",
-                    backgroundColor: "#241f35",
-                  },
-                  my: 1,
-                }}
-              >
-                <Stack
-                  direction={"row"}
-                  sx={{
-                    alignItems: "center",
-                    color: activepath === item.path ? `white` : "#656671",
-                  }}
-                  spacing={2}
-                  m={2}
-                >
-                  {item.icon}
-                  {hoverdrawer && (
-                    <Typography
-                      variant="subtitle1"
-                      color={activepath === item.path ? `white` : "#656671"}
-                    >
-                      {item.title}
-                    </Typography>
-                  )}
-                </Stack>
-              </ButtonBase>
-            );
-          })}
-          <Button
-            onClick={() => {
-              window.location.reload();
-              localStorage.removeItem("token");
-              handlelogout();
-            }}
-            width="100%"
-            sx={{
-              justifyContent: hoverdrawer ? "start" : "center",
-              borderRadius: "0px",
-              color: "#656671",
-              backgroundColor: "transparent",
-              borderRight: "transparent",
-
-              "&:hover": {
-                borderRight: "5px solid #7e60e3",
-                backgroundColor: "#241f35",
-              },
-              my: 1,
-            }}
-          >
-            <Stack
-              direction={"row"}
-              sx={{
-                alignItems: "center",
-                color: "#656671",
+      {/* <Divider color="white" mt={2} /> */}
+      <Stack spacing={4} mt={2} width={"100%"} alignContent={"center"}>
+        <img
+          src={icon}
+          height={"57px"}
+          width={"57px"}
+          style={{ margin: "auto" }}
+        />
+        {drawerItem.map((item) => {
+          return (
+            <ButtonBase
+              width="100%"
+              component={Link}
+              to={item.path}
+              onClick={() => {
+                if (ismobilescreen) {
+                  setmobilescreen(false);
+                }
               }}
-              spacing={2}
-              m={1}
+              sx={{
+                justifyContent: hoverdrawer ? "start" : "center",
+                borderRadius: "0px",
+                color: activepath === item.path ? `white` : "#656671",
+                backgroundColor:
+                  activepath === item.path ? `#d5e6fb` : "transparent",
+                borderRight:
+                  activepath === item.path
+                    ? `5px solid #d5e6fb`
+                    : "transparent",
+
+                "&:hover": {
+                  borderRight: "5px solid #6aa3fd",
+                  backgroundColor: "  #d5e6fb",
+                },
+                my: 1,
+              }}
             >
-              <TbLogout2 size={22} />
-              {hoverdrawer && (
-                <Typography variant="subtitle1" color={"#656671"}>
-                  Logout
-                </Typography>
-              )}
-            </Stack>
-          </Button>
-        </Stack>
-      </Box>
-      {hoverdrawer && (
-        <Box>
-          <Stack textAlign={"center"}>
-            <Typography variant="subtitle2">Join the community</Typography>
-            <Typography variant="subtitle2">and find out more</Typography>
-          </Stack>
-        </Box>
-      )}
+              <Stack
+                direction={"row"}
+                sx={{
+                  alignItems: "center",
+                  color: activepath === item.path ? `#6aa3fd` : "#656671",
+                }}
+                spacing={2}
+                m={2}
+              >
+                {item.icon}
+                {hoverdrawer && (
+                  <Typography
+                    variant="subtitle1"
+                    color={activepath === item.path ? `white` : "#656671"}
+                  >
+                    {item.title}
+                  </Typography>
+                )}
+              </Stack>
+            </ButtonBase>
+          );
+        })}
+      </Stack>
     </Box>
   );
 
@@ -234,13 +205,31 @@ function App() {
           <Box sx={{ display: { xs: "none", md: "block" } }}></Box>
 
           <Box>
-            <Stack direction={"row"} spacing={1} p={1}>
-              <Avatar />
-              <Stack spacing={0.1}>
-                <Typography variant="caption">Nikhil Pal</Typography>
-                <Typography variant="caption">po7508@srmist.edu.in</Typography>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <Stack direction={"row"} spacing={1} p={1}>
+                <DatePicker
+                  sx={{
+                    backgroundColor: "white",
+                    padding: 0,
+                    margin: 0,
+                    width: 180,
+                  }}
+                  defaultValue={dayjs("2023-01-12")}
+                  onChange={handleStartDateChange}
+                  timezone="Asia/Kolkata"
+                />
+                <DatePicker
+                  sx={{
+                    backgroundColor: "white",
+                    padding: 0,
+                    width: 180,
+                  }}
+                  defaultValue={dayjs("2024-01-01")}
+                  onChange={handleEndDateChange}
+                  timezone="Asia/Kolkata"
+                />
               </Stack>
-            </Stack>
+            </LocalizationProvider>
           </Box>
         </Box>
       </AppBar>
@@ -273,7 +262,7 @@ function App() {
           }}
           PaperProps={{
             sx: {
-              backgroundColor: theme.background.black,
+              // backgroundColor: theme.background.black,
               backdropFilter: "blur(6px)",
               transition: theme.transitions.create("width", {
                 easing: theme.transitions.easing.sharp,
@@ -286,8 +275,6 @@ function App() {
         </Drawer>
         <Drawer
           variant="permanent"
-          onMouseEnter={() => sethoverdrawer(!hoverdrawer)}
-          onMouseLeave={() => sethoverdrawer(!hoverdrawer)}
           sx={{
             display: { xs: "none", md: "block" },
             "& .MuiDrawer-paper": {
@@ -297,7 +284,7 @@ function App() {
           }}
           PaperProps={{
             sx: {
-              backgroundColor: theme.background.black,
+              // backgroundColor: theme.background.black,
               transition: theme.transitions.create("width", {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.enteringScreen,
@@ -313,7 +300,7 @@ function App() {
         sx={{
           flexGrow: 1,
           backgroundColor: "#f0f8ff",
-          paddingBlock: 3,
+          paddingBlock: 4,
           paddingInline: 2,
           mt: 7,
           mx: 0.5,

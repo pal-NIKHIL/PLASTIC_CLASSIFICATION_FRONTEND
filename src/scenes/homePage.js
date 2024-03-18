@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -6,6 +6,7 @@ import {
   Card,
   Stack,
   Typography,
+  useColorScheme,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
@@ -21,6 +22,8 @@ import petImage from "../assest/pet.png";
 import ppImage from "../assest/pp.png";
 import psImage from "../assest/ps.png";
 import pvcImage from "../assest/pvc.png";
+import axios from "axios";
+import { UserContext } from "../store/usercontext";
 const HomePage = () => {
   const theme = useTheme();
   const plasticTypes = [
@@ -32,20 +35,51 @@ const HomePage = () => {
     { type: "Polystyrene", shortform: "PS", image: psImage },
     // { type: "Other", shortform: "Other", image: null },
   ];
-  const getRandomCount = () => Math.floor(Math.random() * 1000);
-
+  const [isloading, setLoading] = useState(false);
+  const [plasticCounts, setPlasticCounts] = useState({});
+  const { state } = useContext(UserContext);
+  const { startDate, endDate } = state;
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  useEffect(() => {
+    axios
+      .post(
+        "https://plastic-classification-backend.vercel.app/getdatafortotal",
+        {
+          startdate: startDate,
+          enddate: endDate,
+        }
+      )
+      .then((response) => {
+        setPlasticCounts(response.data);
+        setLoading(true);
+      })
+      .catch((error) => console.log(error.message));
+  }, [startDate, endDate]);
   return (
     <Box>
-      <Grid2 container spacing={2}>
+      <Box
+        sx={{
+          display: "flex",
+          overflowX: isSmallScreen ? "hidden" : "auto",
+          flexDirection: isSmallScreen ? "column" : "row",
+          marginBottom: 2,
+        }}
+      >
         {plasticTypes.map((plasticType) => (
-          <TotalPlasticCard
+          <Box
             key={plasticType.shortform}
-            count={getRandomCount()}
-            shortform={plasticType.shortform}
-            type={plasticType.type}
-            image={plasticType.image}
-          />
+            sx={{ marginBottom: isSmallScreen ? 2 : 0 }}
+          >
+            <TotalPlasticCard
+              count={plasticCounts[plasticType.shortform]}
+              shortform={plasticType.shortform}
+              type={plasticType.type}
+              image={plasticType.image}
+            />
+          </Box>
         ))}
+      </Box>
+      <Grid2 container spacing={2}>
         <DailyPlasticChart />
         <EducationCardSection />
         <ContinentWiseContribution />

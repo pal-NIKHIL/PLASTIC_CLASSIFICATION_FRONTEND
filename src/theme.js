@@ -9,7 +9,7 @@ const CustomTheme = () => {
         main: "#ECECEC",
       },
     },
-    fontFamily: "'Poppins','Mona Sans', 'sans-serif'",
+    fontFamily: "'Inter','Mona Sans', 'sans-serif'",
     fontSize: "14px",
     lineHeight: "22px",
     fontWeight: 500,
@@ -208,6 +208,13 @@ const CustomTheme = () => {
           },
         },
       },
+      MuiDatePicker: {
+        styleOverrides: {
+          root: {
+            backgroundColor: "white",
+          },
+        },
+      },
       MuiFormLabel: {
         styleOverrides: {
           root: {
@@ -247,18 +254,18 @@ const CustomTheme = () => {
     },
     typography: {
       fontFamily:
-        '"Poppins","Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+        '"Inter","Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
       body1: {
-        lineHeight: "32px",
-        fontSize: "18px",
-        fontWeight: 400,
+        lineHeight: "28px",
+        fontSize: "16px",
+        fontWeight: 600,
         color: "#0f0f10",
       },
       body2: {
-        lineHeight: "32px",
-        fontSize: "17px",
-        fontWeight: 400,
-        color: "#0f0f10",
+        lineHeight: "22.2px",
+        fontSize: "13px",
+        fontWeight: 500,
+        color: "#626d7d",
       },
       h1: {
         fontSize: "64px",
@@ -267,7 +274,7 @@ const CustomTheme = () => {
         color: "#0f0f10",
       },
       h2: {
-        fontSize: "40px",
+        fontSize: "35px",
         lineHeight: "48px",
         fontWeight: 600,
         color: "black",
@@ -281,7 +288,7 @@ const CustomTheme = () => {
       h4: {
         fontSize: "20px",
         lineHeight: "28px",
-        fontWeight: 500,
+        fontWeight: 600,
         color: "#0f0f10",
       },
       subtitle1: {

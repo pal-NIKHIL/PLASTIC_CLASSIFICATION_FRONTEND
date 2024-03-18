@@ -32,14 +32,37 @@ const MonthlyPlasticTable = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Month</TableCell>
-              <TableCell>HDPE</TableCell>
-              <TableCell>LDPE</TableCell>
-              <TableCell>PET</TableCell>
-              <TableCell>PP</TableCell>
-              <TableCell>PS</TableCell>
-              <TableCell>PVC</TableCell>
-              <TableCell>Others</TableCell>
+              <TableCell>
+                {" "}
+                <Typography variant="body1">Month</Typography>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <Typography variant="body1">HDPE</Typography>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <Typography variant="body1">LDPE</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="body1">PET</Typography>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <Typography variant="body1">PP</Typography>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <Typography variant="body1">PS</Typography>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <Typography variant="body1">PVC</Typography>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <Typography variant="body1">Others</Typography>
+              </TableCell>
             </TableRow>
           </TableHead>
           {isloading ? (
@@ -47,7 +70,9 @@ const MonthlyPlasticTable = () => {
               {montlydata.map((data) => {
                 return (
                   <TableRow>
-                    <TableCell>{data.month}</TableCell>
+                    <TableCell>
+                      <Typography variant="body1">{data.month}</Typography>
+                    </TableCell>
                     {Object.entries(data.totalCollection).map(
                       ([type, count]) => {
                         return <TableCell key={type}>{count}</TableCell>;

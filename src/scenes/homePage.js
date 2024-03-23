@@ -9,6 +9,7 @@ import {
   useColorScheme,
   useMediaQuery,
   useTheme,
+  Typography
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import TotalPlasticCard from "../component/TotalPlasticCard";
@@ -65,6 +66,15 @@ const HomePage = () => {
           marginBottom: 2,
         }}
       >
+  <Typography variant="body1">
+ NIKHIL PAL
+</Typography>
+ <Typography variant="body1" >
+ PRASOON GAUTAM
+</Typography>
+ <Typography variant="body1" >
+ ANIKET WAKODIKAR
+</Typography>
         {plasticTypes.map((plasticType) => (
           <Box
             key={plasticType.shortform}

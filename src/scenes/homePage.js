@@ -57,15 +57,7 @@ const HomePage = () => {
   }, [startDate, endDate]);
   return (
     <Box>
-      <Box
-        sx={{
-          display: "flex",
-          overflowX: isSmallScreen ? "hidden" : "auto",
-          flexDirection: isSmallScreen ? "column" : "row",
-          marginBottom: 2,
-        }}
-      >
-  <Typography variant="body1">
+    <Typography variant="body1">
  NIKHIL PAL
 </Typography>
  <Typography variant="body1" >
@@ -74,6 +66,14 @@ const HomePage = () => {
  <Typography variant="body1" >
  ANIKET WAKODIKAR
 </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          overflowX: isSmallScreen ? "hidden" : "auto",
+          flexDirection: isSmallScreen ? "column" : "row",
+          marginBottom: 2,
+        }}
+      >
         {plasticTypes.map((plasticType) => (
           <Box
             key={plasticType.shortform}

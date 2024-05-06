@@ -33,7 +33,7 @@ const MonthlyPlasticTable = () => {
     <Grid2 xs={12} sm={12} lg={7}>
       <TableContainer
         component={Paper}
-        sx={{ maxWidth: "90vw", overflow: "auto" }}
+        sx={{ height: "350px", overflow: "auto" }}
       >
         <Table>
           <TableHead>

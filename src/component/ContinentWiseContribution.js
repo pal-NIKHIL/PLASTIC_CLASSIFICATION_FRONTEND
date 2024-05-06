@@ -8,6 +8,7 @@ const ContinentWiseContribution = () => {
       <Card
         sx={{
           padding: 2,
+          height: "350px",
         }}
       >
         <Typography variant="h3">Mismanaged plastic waste, 2019</Typography>

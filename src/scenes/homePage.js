@@ -4,11 +4,13 @@ import {
   Button,
   ButtonBase,
   Card,
+  Grid,
   Stack,
+  Toolbar,
   Typography,
   useColorScheme,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import TotalPlasticCard from "../component/TotalPlasticCard";
@@ -24,6 +26,10 @@ import psImage from "../assest/ps.png";
 import pvcImage from "../assest/pvc.png";
 import axios from "axios";
 import { UserContext } from "../store/usercontext";
+import { TeamSection } from "../component/teamsection";
+import image1 from "../assest/boy.png";
+import image2 from "../assest/man (1).png";
+import image3 from "../assest/man.png";
 const HomePage = () => {
   const theme = useTheme();
   const plasticTypes = [
@@ -57,15 +63,6 @@ const HomePage = () => {
   }, [startDate, endDate]);
   return (
     <Box>
-    <Typography variant="body1">
- NIKHIL PAL
-</Typography>
- <Typography variant="body1" >
- PRASOON GAUTAM
-</Typography>
- <Typography variant="body1" >
- ANIKET WAKODIKAR
-</Typography>
       <Box
         sx={{
           display: "flex",
@@ -93,6 +90,32 @@ const HomePage = () => {
         <EducationCardSection />
         <ContinentWiseContribution />
         <MonthlyPlasticTable />
+
+        <Grid2 item xs={12}>
+          <Card bgcolor={"white"}>
+            <Typography variant="h2" textAlign={"center"} marginY={2}>
+              Our Team
+            </Typography>
+            <hr />
+            <Grid2 container py={4}>
+              <TeamSection
+                name={"Aniket Wakodikar"}
+                regno={"RA2011033010184"}
+                image={image2}
+              />
+              <TeamSection
+                name={"Nikhil Pal"}
+                regno={"RA2011033010178"}
+                image={image1}
+              />
+              <TeamSection
+                name={"Prasoon Gautam"}
+                regno={"RA2011033010180"}
+                image={image3}
+              />
+            </Grid2>
+          </Card>
+        </Grid2>
       </Grid2>
     </Box>
   );

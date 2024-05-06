@@ -86,16 +86,6 @@ function App() {
       path: "/",
       icon: <FaHome />,
     },
-    {
-      title: "Interview",
-      path: "/interview-experience",
-      icon: <FaBriefcase />,
-    },
-    {
-      title: "Campus Life",
-      path: "/campus-experience",
-      icon: <FaBuilding />,
-    },
   ];
   const drawer = (
     <Box

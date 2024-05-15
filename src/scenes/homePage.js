@@ -99,20 +99,16 @@ const HomePage = () => {
             <hr />
             <Grid2 container py={4}>
               <TeamSection
-                name={"Aniket Wakodikar"}
-                regno={"RA2011033010184"}
+                name={"Akash Shedage"}
+                regno={"209303087"}
                 image={image2}
               />
               <TeamSection
-                name={"Nikhil Pal"}
-                regno={"RA2011033010178"}
+                name={"Naivedhya Sharma"}
+                regno={"209303374"}
                 image={image1}
               />
-              <TeamSection
-                name={"Prasoon Gautam"}
-                regno={"RA2011033010180"}
-                image={image3}
-              />
+              
             </Grid2>
           </Card>
         </Grid2>

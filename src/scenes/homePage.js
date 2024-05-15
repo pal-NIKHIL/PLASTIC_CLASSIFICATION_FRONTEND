@@ -101,12 +101,12 @@ const HomePage = () => {
               <TeamSection
                 name={"Akash Shedage"}
                 regno={"209303087"}
-                image={image2}
+               
               />
               <TeamSection
                 name={"Naivedhya Sharma"}
                 regno={"209303374"}
-                image={image1}
+                
               />
               
             </Grid2>

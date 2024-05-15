@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
-export const TeamSection = ({ name, regno, image }) => {
+export const TeamSection = ({ name, regno }) => {
   return (
     <Grid2
       item
@@ -16,7 +16,7 @@ export const TeamSection = ({ name, regno, image }) => {
       display="flex"
       flexDirection="column"
     >
-      <Avatar src={image} />
+      
       <Typography>{name}</Typography>
       <Typography>{regno}</Typography>
     </Grid2>

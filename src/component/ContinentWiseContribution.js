@@ -11,7 +11,7 @@ const ContinentWiseContribution = () => {
           height: "350px",
         }}
       >
-        <Typography variant="h3">Mismanaged plastic waste, 2019</Typography>
+        <Typography variant="h3">Mismanaged plastic waste, 2024</Typography>
         <Typography variant="body2" mt={2}>
           Mismanaged plastic waste includes materials burned in open pits,
           dumped into seas or open waters, or disposed of in unsanitary
